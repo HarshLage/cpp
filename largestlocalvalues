@@ -1,0 +1,38 @@
+#include<bits/stdc++.h>
+using namespace std;
+vector<vector<int>>maxmatrix(vector<vector<int>>&grid){
+    int n = grid.size();
+    vector<vector<int>>ans(n-2 , vector<int>(n-2,0));
+    for(int i=0;i<n-2;i++){
+        for(int j=0;j<n-2;j++){
+            ans[i][j] = max({grid[i][j],grid[i][j+1],grid[i][j+2],
+            grid[i+1][j],grid[i+1][j+1],grid[i+1][j+2],
+            grid[i+2][j],grid[i+2][j+1],grid[i+2][j+2]});
+        }
+    }
+    return ans;
+}
+int main()
+{
+    int m;
+    cin>>m;
+    int n;
+    cin>>n;
+
+    vector<vector<int>>arr(m,vector<int>(n));
+    for(int i=0;i<m;i++){
+        for(int j=0;j<n;j++){
+            cin>>arr[i][j];
+        }
+    }
+
+    vector<vector<int>>lastans = maxmatrix(arr);
+    for(int i=0;i<lastans.size();i++){
+        for(int j=0;j<lastans[i].size();j++){
+            cout<<lastans[i][j]<<" ";
+        }
+        cout<<endl;
+    }
+
+ 
+}
